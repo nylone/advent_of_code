@@ -66,3 +66,6 @@ defmodule Day01 do
     |> Enum.to_list()
   end
 end
+
+Day01.first_answer()
+Day01.second_answer()

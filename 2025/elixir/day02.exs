@@ -57,3 +57,6 @@ defmodule Day02 do
     |> Enum.sum()
   end
 end
+
+Day02.first_answer()
+Day02.second_answer()
