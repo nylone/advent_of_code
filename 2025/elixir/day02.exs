@@ -30,7 +30,8 @@ defmodule Day02 do
             (case length_divisor_or_all_sizes do
                :all_sizes -> trunc(Float.ceil(digits_len / 2))..1//-1
                divisor -> List.wrap(trunc(Float.ceil(digits_len / divisor)))
-             end), rem(digits_len, chunk_size) == 0 do
+             end),
+          rem(digits_len, chunk_size) == 0 do
         Enum.chunk_every(digits, chunk_size)
         |> Enum.dedup()
       end
@@ -42,8 +43,8 @@ defmodule Day02 do
   def first_answer do
     get_ids()
     |> Enum.map(&decorate_unique_chunks(&1, 2))
-    |> Enum.filter(&(Enum.any?(elem(&1, 1), fn unique_chunks -> length(unique_chunks) == 1 end)))
-    #|> IO.inspect(charlists: :as_lists, pretty: true)
+    |> Enum.filter(&Enum.any?(elem(&1, 1), fn unique_chunks -> length(unique_chunks) == 1 end))
+    # |> IO.inspect(charlists: :as_lists, pretty: true)
     |> Enum.map(&elem(&1, 0))
     |> Enum.sum()
   end
@@ -51,8 +52,8 @@ defmodule Day02 do
   def second_answer do
     get_ids()
     |> Enum.map(&decorate_unique_chunks(&1, :all_sizes))
-    |> Enum.filter(&(Enum.any?(elem(&1, 1), fn unique_chunks -> length(unique_chunks) == 1 end)))
-    #|> IO.inspect(charlists: :as_lists, pretty: true)
+    |> Enum.filter(&Enum.any?(elem(&1, 1), fn unique_chunks -> length(unique_chunks) == 1 end))
+    # |> IO.inspect(charlists: :as_lists, pretty: true)
     |> Enum.map(&elem(&1, 0))
     |> Enum.sum()
   end
