@@ -74,9 +74,9 @@ defmodule Day04 do
         cell_value = cell_at_pos(matrix, x, y)
         can_be_removed = count_adjacents(matrix, x, y) < 4
 
-        IO.inspect({x, y}, label: "{x, y}")
-        IO.inspect(cell_value, label: "cell")
-        IO.inspect(can_be_removed, label: "cbr")
+        # IO.inspect({x, y}, label: "{x, y}")
+        # IO.inspect(cell_value, label: "cell")
+        # IO.inspect(can_be_removed, label: "cbr")
 
         case {cell_value, can_be_removed} do
           {@roll_of_paper, true} -> {?., 1}
@@ -86,14 +86,11 @@ defmodule Day04 do
       end
       |> Enum.unzip()
 
-    new_matrix =
-      bytes_list
-      |> Enum.map(&<<&1>>)
-      |> Enum.reduce(&<>/2)
+    new_matrix = :binary.list_to_bin(bytes_list)
 
     removed_rolls = Enum.sum(accumulator_list)
-    IO.inspect(removed_rolls, label: "removed rolls")
-    IO.inspect(accumulator_removed, label: "accumulator removed rolls")
+    # IO.inspect(removed_rolls, label: "removed rolls")
+    # IO.inspect(accumulator_removed, label: "accumulator removed rolls")
 
     case removed_rolls do
       0 ->
